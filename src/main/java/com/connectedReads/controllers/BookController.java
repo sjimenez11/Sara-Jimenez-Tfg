@@ -5,8 +5,6 @@ import com.connectedReads.dtos.BookResponseDto;
 import com.connectedReads.entities.BookEntity;
 import com.connectedReads.mappers.BookMapper;
 import com.connectedReads.services.BookService;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
