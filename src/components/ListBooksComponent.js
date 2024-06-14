@@ -2,7 +2,6 @@ import {useState, useEffect} from 'react';
 import BookService from '../services/BookService';
 
 export const ListBooksComponent = () => {
-    
     const [books, setBooks] = useState([]);
 
     useEffect(() =>{
