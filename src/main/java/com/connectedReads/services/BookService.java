@@ -1,6 +1,6 @@
 package com.connectedReads.services;
 
-import com.connectedReads.entities.BookEntity;
+import com.connectedReads.entities.Book;
 import com.connectedReads.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,16 +15,16 @@ public class BookService {
     @Autowired
     private BookRepository bookRepository;
 
-    public BookEntity createBook(BookEntity book){
+    public Book createBook(Book book){
         return bookRepository.save(book);
     }
 
-    public BookEntity getBookById(Long id){
-        Optional<BookEntity> optionalBook = bookRepository.findById(id);
+    public Book getBookById(Long id){
+        Optional<Book> optionalBook = bookRepository.findById(id);
         return optionalBook.get();
     }
 
-    public List<BookEntity> getAllBooks(){
+    public List<Book> getAllBooks(){
         return bookRepository.findAll();
     }
 
@@ -32,7 +32,7 @@ public class BookService {
         bookRepository.deleteById(id);
     }
 
-    public List<BookEntity> findBooksByTitle(String title){
+    public List<Book> findBooksByTitle(String title){
         return bookRepository.findBooksByTitleContainsIgnoreCase(title);
     }
 }

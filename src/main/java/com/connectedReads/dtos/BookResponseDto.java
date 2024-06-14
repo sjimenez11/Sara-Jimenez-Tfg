@@ -3,6 +3,8 @@ package com.connectedReads.dtos;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.util.Set;
+
 @Data
 @AllArgsConstructor
 public class BookResponseDto {
@@ -10,4 +12,5 @@ public class BookResponseDto {
     private String title;
     private String author;
     private String synopsis;
+    private Set<ReadingListBookResponseDto> readingListBooks;
 }

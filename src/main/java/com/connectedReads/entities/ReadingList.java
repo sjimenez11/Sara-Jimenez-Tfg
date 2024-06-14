@@ -5,12 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Data // getters, setters, métodos toString(), equals(), y hashCode()
 @Table(name = "readingLists")
-public class ReadingListEntity {
+public class ReadingList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,4 +20,6 @@ public class ReadingListEntity {
     private Long userId;
     private String name;
     private String description;
+    @OneToMany(mappedBy = "readingList")
+    private Set<ReadingListBook> readingListBooks;
 }

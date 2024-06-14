@@ -11,14 +11,17 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data // getters, setters, métodos toString(), equals(), y hashCode()
 @Table(name = "readingListBooks")
-public class ReadingListBookEntity {
+public class ReadingListBook {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    private ReadingListEntity readingList;
+    @JoinColumn(name = "idBook")
+    private Book book;
     @ManyToOne
-    private BookEntity book;
+    @JoinColumn(name = "idReadingList")
+    private ReadingList readingList;
+    //TODO quizá quitar el estado en la lista
     @Enumerated(EnumType.STRING)
     private ReadingStatus status;
 

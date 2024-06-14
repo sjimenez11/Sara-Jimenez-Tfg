@@ -2,7 +2,7 @@ package com.connectedReads.controllers;
 
 import com.connectedReads.dtos.BookRequestDto;
 import com.connectedReads.dtos.BookResponseDto;
-import com.connectedReads.entities.BookEntity;
+import com.connectedReads.entities.Book;
 import com.connectedReads.mappers.BookMapper;
 import com.connectedReads.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,35 +17,44 @@ import java.util.List;
 public class BookController {
     @Autowired
     private BookService bookService;
+
     @Autowired
     private BookMapper bookMapper;
 
     @PostMapping("")
-    public ResponseEntity<BookResponseDto> createBook(@RequestBody BookRequestDto bookRequestDto){
-        BookEntity bookSaved = bookService.createBook(bookMapper.toModel(bookRequestDto));
-        return ResponseEntity.created(null).body(bookMapper.toResponse(bookSaved));
+    public ResponseEntity<BookResponseDto> createBook(@RequestBody BookRequestDto bookRequestDto) {
+        Book bookSaved = bookService.createBook(bookMapper.toEntity(bookRequestDto));
+        return ResponseEntity.created(null).body(bookMapper.toResponseDto(bookSaved));
     }
 
     @GetMapping("")
-    public ResponseEntity<List<BookResponseDto>> getAllBooks(){
-        return ResponseEntity.ok(bookMapper.toResponse(bookService.getAllBooks()));
+    public ResponseEntity<List<BookResponseDto>> getAllBooks() {
+        List<Book> books = bookService.getAllBooks();
+        List<BookResponseDto> bookResponseDtos = bookMapper.toResponseDtoList(books);
+        return ResponseEntity.ok(bookResponseDtos);
     }
 
     @GetMapping("/{id}")
-    public BookEntity findBookById(@PathVariable Long id){
-        return bookService.getBookById(id);
+    public ResponseEntity<BookResponseDto> findBookById(@PathVariable Long id) {
+        Book book = bookService.getBookById(id);
+        if (book != null) {
+            BookResponseDto bookResponseDto = bookMapper.toResponseDto(book);
+            return ResponseEntity.ok(bookResponseDto);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/title/{title}")
-    public ResponseEntity<List<BookResponseDto>> getBooksByTitle(
-            @PathVariable String title
-    ) {
-        return ResponseEntity.ok(bookMapper.toResponse(bookService.findBooksByTitle(title))
-        );
+    public ResponseEntity<List<BookResponseDto>> getBooksByTitle(@PathVariable String title) {
+        List<Book> books = bookService.findBooksByTitle(title);
+        List<BookResponseDto> bookResponseDtos = bookMapper.toResponseDtoList(books);
+        return ResponseEntity.ok(bookResponseDtos);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteBookById(@PathVariable Long id){
+    public ResponseEntity<Void> deleteBookById(@PathVariable Long id) {
         bookService.deleteBookById(id);
+        return ResponseEntity.noContent().build();
     }
 }
