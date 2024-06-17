@@ -3,7 +3,7 @@ package com.connectedReads.services;
 import com.connectedReads.entities.Book;
 import com.connectedReads.entities.ReadingList;
 import com.connectedReads.entities.ReadingListBook;
-import com.connectedReads.exceptions.connectedReadsException;
+import com.connectedReads.exceptions.ConnectedReadsException;
 import com.connectedReads.repositories.BookRepository;
 import com.connectedReads.repositories.ReadingListBookRepository;
 import com.connectedReads.repositories.ReadingListRepository;
@@ -46,7 +46,7 @@ public class ReadingListService {
                 readingListBook.setReadingList(readingList);
                 readingListBookRepository.save(readingListBook);
             } else {
-                throw new connectedReadsException("Book with ID " + bookId + " not found");
+                throw new ConnectedReadsException("Book with ID " + bookId + " not found");
             }
         }
 

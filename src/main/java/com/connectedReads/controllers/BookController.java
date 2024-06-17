@@ -21,7 +21,7 @@ public class BookController {
     @Autowired
     private BookMapper bookMapper;
 
-    @PostMapping("")
+    @PostMapping("/create")
     public ResponseEntity<BookResponseDto> createBook(@RequestBody BookRequestDto bookRequestDto) {
         Book bookSaved = bookService.createBook(bookMapper.toEntity(bookRequestDto));
         return ResponseEntity.created(null).body(bookMapper.toResponseDto(bookSaved));
@@ -52,7 +52,7 @@ public class BookController {
         return ResponseEntity.ok(bookResponseDtos);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteBookById(@PathVariable Long id) {
         bookService.deleteBookById(id);
         return ResponseEntity.noContent().build();
