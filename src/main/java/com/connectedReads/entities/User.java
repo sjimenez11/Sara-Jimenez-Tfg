@@ -17,7 +17,7 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "_User")
+@Table(name = "users")
 @Entity
 public class User implements UserDetails {
     @Id
@@ -25,6 +25,7 @@ public class User implements UserDetails {
     private Long id;
     private String userName;
     private String userPassword;
+    @Enumerated(EnumType.STRING)
     private Role role;
     @OneToMany(mappedBy = "user")
     private Set<ReadingList> readingLists;

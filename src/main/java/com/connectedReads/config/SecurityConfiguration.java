@@ -44,7 +44,7 @@ public class SecurityConfiguration {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> authorize
-                                .requestMatchers("/error/**").permitAll()
+                                /*.requestMatchers("/error/**").permitAll()
                                 // login / register
                                 .requestMatchers(
                                         // Users
@@ -85,8 +85,8 @@ public class SecurityConfiguration {
 
                                 ).hasAnyRole("ADMIN")
                                 // Cualquier otra request con lo que sea (en esta caso autenticación)
-                                .anyRequest().authenticated()
-                        //.anyRequest().permitAll()
+                                .anyRequest().authenticated()*/
+                        .anyRequest().permitAll()
                 )
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilter(jwtAuthorizationFilter(authManager))
