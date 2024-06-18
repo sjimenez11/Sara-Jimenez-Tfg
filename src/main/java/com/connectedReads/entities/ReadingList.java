@@ -21,6 +21,7 @@ public class ReadingList {
     private User user;
     private String name;
     private String description;
-    @OneToMany(mappedBy = "readingList")
+    @OneToMany(mappedBy = "readingList", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ReadingListBook> readingListBooks;
 }
+

@@ -1,7 +1,6 @@
 package com.connectedReads.entities;
 
 import com.connectedReads.entities.enums.Role;
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
