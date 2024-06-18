@@ -1,5 +1,6 @@
 package com.connectedReads.dtos;
 
+import com.connectedReads.entities.Review;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

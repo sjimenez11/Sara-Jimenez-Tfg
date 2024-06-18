@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Component
 public class ReviewService {
@@ -44,6 +46,10 @@ public class ReviewService {
         review.setComment(comment);
         review.setRating(rating);
         return reviewRepository.save(review);
+    }
+
+    public List<Review> getReviewsByBookId(Long bookId){
+        return reviewRepository.findReviewByBookId(bookId);
     }
 
     public void deleteReviewById(Long id){

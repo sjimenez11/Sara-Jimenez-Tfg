@@ -21,5 +21,6 @@ public class Book {
     private String synopsis;
     @OneToMany(mappedBy = "book")
     private Set<ReadingListBook> readingListBooks;
-
+    @OneToMany(mappedBy = "book")
+    private Set<Review> reviews;
 }

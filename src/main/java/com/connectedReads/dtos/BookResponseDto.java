@@ -13,4 +13,5 @@ public class BookResponseDto {
     private String author;
     private String synopsis;
     private Set<ReadingListBookResponseDto> readingListBooks;
+    private Set<ReviewResponseDto> reviews;
 }

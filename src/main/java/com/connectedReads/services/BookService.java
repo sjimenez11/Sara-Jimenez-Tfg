@@ -1,7 +1,9 @@
 package com.connectedReads.services;
 
 import com.connectedReads.entities.Book;
+import com.connectedReads.entities.Review;
 import com.connectedReads.repositories.BookRepository;
+import com.connectedReads.repositories.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,8 @@ import java.util.Optional;
 public class BookService {
     @Autowired
     private BookRepository bookRepository;
+    @Autowired
+    private ReviewRepository reviewRepository;
 
     public Book createBook(Book book){
         return bookRepository.save(book);

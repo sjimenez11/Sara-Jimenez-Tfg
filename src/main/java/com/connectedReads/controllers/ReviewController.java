@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 @RequestMapping("api/review")
@@ -35,6 +37,15 @@ public class ReviewController {
         Review review = reviewService.updateReview(id, comment, rating);
         ReviewResponseDto reviewResponseDto = reviewMapper.toResponseDto(review);
         return ResponseEntity.ok(reviewResponseDto);
+    }
+
+    @GetMapping("/{bookId}")
+    public ResponseEntity<List<ReviewResponseDto>> getReviewsByBookId(
+            @PathVariable Long bookId
+    ){
+        List<Review> reviews = reviewService.getReviewsByBookId(bookId);
+        List<ReviewResponseDto> responseDtos = reviewMapper.toResponseDtoList(reviews);
+        return ResponseEntity.ok(responseDtos);
     }
 
     @DeleteMapping("/{id}")
