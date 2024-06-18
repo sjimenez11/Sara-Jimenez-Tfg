@@ -24,7 +24,7 @@ public class ReadingListMapper {
 
     public ReadingList toEntity(ReadingListRequestDto readingListRequestDto) {
         ReadingList readingList = new ReadingList();
-        readingList.setUserId(readingListRequestDto.getUserId());
+        //no hay que poner setUserId porque no se puede cambiar de usuario una lista
         readingList.setName(readingListRequestDto.getName());
         readingList.setDescription(readingListRequestDto.getDescription());
 
@@ -38,7 +38,7 @@ public class ReadingListMapper {
 
         return new ReadingListResponseDto(
                 readingList.getId(),
-                readingList.getUserId(),
+                readingList.getUser().getId(),
                 readingList.getName(),
                 readingList.getDescription(),
                 new HashSet<>(readingListBooks)

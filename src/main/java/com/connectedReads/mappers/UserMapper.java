@@ -17,14 +17,15 @@ public class UserMapper {
         Optional<User> user = repository.findByUserName(dto.getEmail());
         if(user.isPresent() || !Objects.equals(dto.getPassword(), dto.getRepeatPassword())){
             return null;
-        }else return new User(null, dto.getEmail(), dto.getPassword(), Role.USER);
+        }else return new User(null, dto.getEmail(), dto.getPassword(), Role.USER, null);
     }
 
     public UserDto toDto(User entity){
         return new UserDto(
                 entity.getId(),
                 entity.getUsername(),
-                entity.getRole()
+                entity.getRole(),
+                entity.getReadingLists()
         );
     }
 

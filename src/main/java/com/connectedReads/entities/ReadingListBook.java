@@ -21,7 +21,8 @@ public class ReadingListBook {
     @ManyToOne
     @JoinColumn(name = "idReadingList")
     private ReadingList readingList;
-    //TODO quizá quitar el estado en la lista
+    //TODO quizá quitar el estado en la lista ????
+    //TODO change status (set)
     @Enumerated(EnumType.STRING)
     private ReadingStatus status;
 

@@ -16,8 +16,9 @@ public class ReadingList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //TODO añadir usuarios
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User user;
     private String name;
     private String description;
     @OneToMany(mappedBy = "readingList")

@@ -1,6 +1,7 @@
 package com.connectedReads.entities;
 
 import com.connectedReads.entities.enums.Role;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -24,6 +26,8 @@ public class User implements UserDetails {
     private String userName;
     private String userPassword;
     private Role role;
+    @OneToMany(mappedBy = "user")
+    private Set<ReadingList> readingLists;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(){

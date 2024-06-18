@@ -22,35 +22,8 @@ public class ReadingListService {
     @Autowired
     private ReadingListRepository readingListRepository;
 
-    @Autowired
-    private BookRepository bookRepository;
-
-    @Autowired
-    private ReadingListBookRepository readingListBookRepository;
-
     public ReadingList createReadingList(ReadingList readingList) {
         return readingListRepository.save(readingList);
-    }
-
-    //TODO hace falta?? primero sería crear la lista y luego añadir los libros???
-    @Transactional
-    public ReadingList createReadingList(ReadingList readingList, Set<Long> bookIds) {
-        readingList = readingListRepository.save(readingList); //guardamos lista para obtener su id
-
-        for (Long bookId : bookIds) {
-            Optional<Book> optionalBook = bookRepository.findById(bookId);
-            if (optionalBook.isPresent()) {
-                Book book = optionalBook.get();
-                ReadingListBook readingListBook = new ReadingListBook();
-                readingListBook.setBook(book);
-                readingListBook.setReadingList(readingList);
-                readingListBookRepository.save(readingListBook);
-            } else {
-                throw new ConnectedReadsException("Book with ID " + bookId + " not found");
-            }
-        }
-
-        return readingList;
     }
 
     public void deleteReadingListById(Long id){
