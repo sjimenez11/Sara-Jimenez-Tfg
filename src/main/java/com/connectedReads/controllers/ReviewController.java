@@ -48,6 +48,15 @@ public class ReviewController {
         return ResponseEntity.ok(responseDtos);
     }
 
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<ReviewResponseDto>> getReviewsByUserId(
+            @PathVariable Long userId
+    ){
+        List<Review> reviews = reviewService.getReviewsByUserId(userId);
+        List<ReviewResponseDto> responseDtos = reviewMapper.toResponseDtoList(reviews);
+        return ResponseEntity.ok(responseDtos);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteReviewById(@PathVariable Long id){
         reviewService.deleteReviewById(id);

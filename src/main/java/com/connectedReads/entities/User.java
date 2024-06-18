@@ -28,6 +28,8 @@ public class User implements UserDetails {
     private Role role;
     @OneToMany(mappedBy = "user")
     private Set<ReadingList> readingLists;
+    @OneToMany(mappedBy = "user")
+    private Set<Review> reviews;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(){

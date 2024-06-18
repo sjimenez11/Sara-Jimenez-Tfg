@@ -1,6 +1,7 @@
 package com.connectedReads.dtos.User;
 
 import com.connectedReads.entities.ReadingList;
+import com.connectedReads.entities.Review;
 import com.connectedReads.entities.enums.Role;
 import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
@@ -17,4 +18,5 @@ public class UserDto {
     private String email;
     private Role role;
     private Set<ReadingList> readingLists;
+    private Set<Review> reviews;
 }

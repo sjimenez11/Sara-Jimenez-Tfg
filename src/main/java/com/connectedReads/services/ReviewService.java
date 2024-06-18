@@ -49,7 +49,11 @@ public class ReviewService {
     }
 
     public List<Review> getReviewsByBookId(Long bookId){
-        return reviewRepository.findReviewByBookId(bookId);
+        return reviewRepository.findReviewsByBookId(bookId);
+    }
+
+    public List<Review> getReviewsByUserId(Long userId){
+        return reviewRepository.findReviewsByUserId(userId);
     }
 
     public void deleteReviewById(Long id){

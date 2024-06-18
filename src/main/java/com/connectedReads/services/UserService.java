@@ -51,7 +51,7 @@ public class UserService implements UserDetailsService {
             throw new UserException.UserBadRequestException(
                     "There's already an account linked to this email.");
         }
-        User saved = userRepository.save(new User(null, dto.getEmail(), encoder.encode(dto.getPassword()), Role.USER, null));
+        User saved = userRepository.save(new User(null, dto.getEmail(), encoder.encode(dto.getPassword()), Role.USER, null, null));
         return new UserDtoWithToken(
                 mapper.toDto(saved),
                 jwtTokenUtils.create(saved)
@@ -65,7 +65,7 @@ public class UserService implements UserDetailsService {
         }
         User saved = userRepository.save(new User(null,
                 dto.getEmail(), encoder.encode(dto.getPassword()),
-                dto.getRole(), null));
+                dto.getRole(), null, null));
         return new UserDtoWithToken(
                 mapper.toDto(saved),
                 jwtTokenUtils.create(saved)
@@ -101,7 +101,8 @@ public class UserService implements UserDetailsService {
                 user.getUsername(),
                 encoder.encode(dto.getNewPassword()),
                 user.getRole(),
-                user.getReadingLists()));
+                user.getReadingLists(),
+                user.getReviews()));
         return mapper.toDto(saved);
     }
     public UserDto update(UserDtoUpdate dto) {
@@ -117,7 +118,8 @@ public class UserService implements UserDetailsService {
                 user.getUsername(),
                 encoder.encode(dto.getNewPassword()),
                 user.getRole(),
-                user.getReadingLists()));
+                user.getReadingLists(),
+                user.getReviews()));
         return mapper.toDto(saved);
     }
     public UserDto delete(String email) {
