@@ -12,17 +12,18 @@ import java.time.LocalDateTime;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "messages")
+@Table(name = "message")
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "senderId")
+    @JoinColumn(name = "senderId", nullable = false)
     private User sender;
     @ManyToOne
-    @JoinColumn(name = "recipientId")
+    @JoinColumn(name = "recipientId", nullable = false)
     private User recipient;
+    @Column(nullable = false)
     private String content;
     private LocalDateTime timestamp;
 }

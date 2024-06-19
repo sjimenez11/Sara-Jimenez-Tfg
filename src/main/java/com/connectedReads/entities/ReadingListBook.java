@@ -9,20 +9,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Data // getters, setters, métodos toString(), equals(), y hashCode()
-@Table(name = "readingListBooks")
+@Data
+@Table(name = "readingListBook")
 public class ReadingListBook {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "idBook")
+    @JoinColumn(name = "idBook", nullable = false)
     private Book book;
     @ManyToOne
-    @JoinColumn(name = "idReadingList")
+    @JoinColumn(name = "idReadingList", nullable = false)
     private ReadingList readingList;
-    //TODO quizá quitar el estado en la lista ????
-    //TODO change status (set)
     @Enumerated(EnumType.STRING)
     private ReadingStatus status;
 

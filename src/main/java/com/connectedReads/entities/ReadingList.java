@@ -10,15 +10,16 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Data // getters, setters, métodos toString(), equals(), y hashCode()
-@Table(name = "readingLists")
+@Data
+@Table(name = "readingList")
 public class ReadingList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "userId", nullable = false)
     private User user;
+    @Column(nullable = false)
     private String name;
     private String description;
     @OneToMany(mappedBy = "readingList", cascade = CascadeType.ALL, orphanRemoval = true)

@@ -16,7 +16,7 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "users")
+@Table(name = "_user") //user es una palabra reservada y no se puede usar como nombre de tabla
 @Entity
 public class User implements UserDetails {
     @Id
