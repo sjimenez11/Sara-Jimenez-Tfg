@@ -5,6 +5,9 @@ import HeaderComponent from './components/HeaderComponent';
 import FooterComponent from './components/FooterComponent';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AddBookComponent from './components/AddBookComponent';
+import SignUp from './components/SignUp';
+import LoginComponent from './components/LoginComponent';
+
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
           <Route path="/books" element={<ListBooksComponent/>}></Route>
           <Route path="/add-book" element={<AddBookComponent/>}></Route>
           <Route path="/edit-book/:id" element={<AddBookComponent/>}></Route>
+          <Route path="/signup" element={<SignUp/>}></Route>
+          <Route path="/login" element={<LoginComponent/>}></Route>
+          
         </Routes>
         <FooterComponent/>
       </BrowserRouter>
