@@ -22,7 +22,9 @@ public class BookController {
     private BookMapper bookMapper;
 
     @PostMapping("/create")
-    public ResponseEntity<BookResponseDto> createBook(@RequestBody BookRequestDto bookRequestDto) {
+    public ResponseEntity<BookResponseDto> createBook(
+            @RequestBody BookRequestDto bookRequestDto
+    ) {
         Book bookSaved = bookService.createBook(bookMapper.toEntity(bookRequestDto));
         return ResponseEntity.created(null).body(bookMapper.toResponseDto(bookSaved));
     }

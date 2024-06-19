@@ -23,9 +23,8 @@ public class ReadingListController {
 
     @PostMapping("")
     public ResponseEntity<ReadingListResponseDto> createReadingList(@RequestBody ReadingListRequestDto readingListRequestDto) {
-        ReadingList readingListToSave = readingListMapper.toEntity(readingListRequestDto);
-        ReadingList savedReadingList = readingListService.createReadingList(readingListToSave);
-        ReadingListResponseDto responseDto = readingListMapper.toResponseDto(savedReadingList);
+        ReadingList readingList = readingListService.createReadingList(readingListRequestDto);
+        ReadingListResponseDto responseDto = readingListMapper.toResponseDto(readingList);
         return ResponseEntity.created(null).body(responseDto);
     }
 

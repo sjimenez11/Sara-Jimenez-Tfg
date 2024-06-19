@@ -26,6 +26,14 @@ public class ReviewService {
     UserRepository userRepository;
 
     public Review createReview(ReviewRequestDto requestDto){
+        if (requestDto.getBookId() == null) {
+            throw new IllegalArgumentException("Book ID must not be null");
+        }
+
+        if (requestDto.getUserId() == null) {
+            throw new IllegalArgumentException("User ID must not be null");
+        }
+
         Book book = bookRepository.findById(requestDto.getBookId())
                 .orElseThrow(() -> new ConnectedReadsException("Book with ID " + requestDto.getBookId() + " not found"));
 
@@ -36,7 +44,7 @@ public class ReviewService {
         review.setUser(user);
         review.setBook(book);
         review.setComment(requestDto.getComment());
-        review.setRating(review.getRating());
+        review.setRating(requestDto.getRating());
         return reviewRepository.save(review);
     }
 
