@@ -2,7 +2,9 @@ package com.connectedReads.controllers;
 
 import com.connectedReads.dtos.BookRequestDto;
 import com.connectedReads.dtos.BookResponseDto;
+import com.connectedReads.dtos.MessageResponseDto;
 import com.connectedReads.entities.Book;
+import com.connectedReads.entities.Message;
 import com.connectedReads.mappers.BookMapper;
 import com.connectedReads.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +24,12 @@ public class BookController {
     private BookMapper bookMapper;
 
     @PostMapping("/create")
-    public ResponseEntity<BookResponseDto> createBook(@RequestBody BookRequestDto bookRequestDto) {
-        Book bookSaved = bookService.createBook(bookMapper.toEntity(bookRequestDto));
-        return ResponseEntity.created(null).body(bookMapper.toResponseDto(bookSaved));
+    public ResponseEntity<BookResponseDto> createBook(
+            @RequestBody BookRequestDto bookRequestDto
+    ) {
+        Book book= bookService.createBook(bookRequestDto);
+        BookResponseDto bookResponseDto = bookMapper.toResponseDto(book);
+        return ResponseEntity.created(null).body(bookResponseDto);
     }
 
     @GetMapping("")

@@ -1,5 +1,6 @@
 package com.connectedReads.services;
 
+import com.connectedReads.dtos.BookRequestDto;
 import com.connectedReads.entities.Book;
 import com.connectedReads.entities.Review;
 import com.connectedReads.repositories.BookRepository;
@@ -19,7 +20,11 @@ public class BookService {
     @Autowired
     private ReviewRepository reviewRepository;
 
-    public Book createBook(Book book){
+    public Book createBook(BookRequestDto requestDto){
+        Book book = new Book();
+        book.setTitle(requestDto.getTitle());
+        book.setAuthor(requestDto.getAuthor());
+        book.setSynopsis(requestDto.getSynopsis());
         return bookRepository.save(book);
     }
 
