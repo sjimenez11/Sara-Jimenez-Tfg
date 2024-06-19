@@ -17,8 +17,6 @@ import java.util.Optional;
 public class BookService {
     @Autowired
     private BookRepository bookRepository;
-    @Autowired
-    private ReviewRepository reviewRepository;
 
     public Book createBook(BookRequestDto requestDto){
         Book book = new Book();
