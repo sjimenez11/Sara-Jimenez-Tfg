@@ -30,6 +30,10 @@ public class User implements UserDetails {
     private Set<ReadingList> readingLists;
     @OneToMany(mappedBy = "user")
     private Set<Review> reviews;
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Message> sentMessages;
+    @OneToMany(mappedBy = "recipient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Message> receivedMessages;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(){
