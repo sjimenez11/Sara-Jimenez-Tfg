@@ -17,7 +17,7 @@ public class UserMapper {
         Optional<User> user = repository.findByUserName(dto.getEmail());
         if(user.isPresent() || !Objects.equals(dto.getPassword(), dto.getRepeatPassword())){
             return null;
-        }else return new User(null, dto.getEmail(), dto.getPassword(), Role.USER, null, null, null, null);
+        }else return new User(null, dto.getEmail(), dto.getPassword(), Role.USER, null, null, null, null, null);
     }
 
     public UserDto toDto(User entity){
@@ -28,7 +28,8 @@ public class UserMapper {
                 entity.getReadingLists(),
                 entity.getReviews(),
                 entity.getSentMessages(),
-                entity.getReceivedMessages()
+                entity.getReceivedMessages(),
+                entity.getBooksForSale()
         );
     }
 

@@ -1,9 +1,6 @@
 package com.connectedReads.mappers;
 
-import com.connectedReads.dtos.BookRequestDto;
-import com.connectedReads.dtos.BookResponseDto;
-import com.connectedReads.dtos.ReadingListBookResponseDto;
-import com.connectedReads.dtos.ReviewResponseDto;
+import com.connectedReads.dtos.*;
 import com.connectedReads.entities.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -18,11 +15,13 @@ public class BookMapper {
 
     private final ReadingListBookMapper readingListBookMapper;
     private final ReviewMapper reviewMapper;
+    private final BookForSaleMapper bookForSaleMapper;
 
     @Autowired
-    public BookMapper(@Lazy ReadingListBookMapper readingListBookMapper, @Lazy ReviewMapper reviewMapper) {
+    public BookMapper(@Lazy ReadingListBookMapper readingListBookMapper, @Lazy ReviewMapper reviewMapper, @Lazy BookForSaleMapper bookForSaleMapper) {
         this.readingListBookMapper = readingListBookMapper;
         this.reviewMapper = reviewMapper;
+        this.bookForSaleMapper = bookForSaleMapper;
     }
 
     public Book toEntity(BookRequestDto bookRequestDto) {
@@ -42,13 +41,18 @@ public class BookMapper {
                 .map(reviewMapper::toResponseDto)
                 .toList();
 
+        List<BookForSaleResponseDto> booksForSale = book.getBooksForSale().stream()
+                .map(bookForSaleMapper::toResponseDto)
+                .toList();
+
         return new BookResponseDto(
                 book.getId(),
                 book.getTitle(),
                 book.getAuthor(),
                 book.getSynopsis(),
                 new HashSet<>(readingListBooks),
-                new HashSet<>(reviews)
+                new HashSet<>(reviews),
+                new HashSet<>(booksForSale)
         );
     }
 

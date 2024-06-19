@@ -14,4 +14,5 @@ public class BookResponseDto {
     private String synopsis;
     private Set<ReadingListBookResponseDto> readingListBooks;
     private Set<ReviewResponseDto> reviews;
+    private Set<BookForSaleResponseDto> booksForSale;
 }

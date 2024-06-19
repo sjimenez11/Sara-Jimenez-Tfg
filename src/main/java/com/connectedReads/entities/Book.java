@@ -27,4 +27,6 @@ public class Book {
     private Set<ReadingListBook> readingListBooks;
     @OneToMany(mappedBy = "book")
     private Set<Review> reviews;
+    @OneToMany(mappedBy = "book")
+    private Set<BookForSale> booksForSale;
 }

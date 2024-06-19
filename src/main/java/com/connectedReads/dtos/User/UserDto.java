@@ -1,5 +1,6 @@
 package com.connectedReads.dtos.User;
 
+import com.connectedReads.entities.BookForSale;
 import com.connectedReads.entities.Message;
 import com.connectedReads.entities.ReadingList;
 import com.connectedReads.entities.Review;
@@ -24,4 +25,5 @@ public class UserDto {
     private Set<Review> reviews;
     private Set<Message> sentMessages;
     private Set<Message> receivedMessages;
+    private Set<BookForSale> booksForSale;
 }
