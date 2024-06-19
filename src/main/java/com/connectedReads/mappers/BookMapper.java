@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -33,15 +35,21 @@ public class BookMapper {
     }
 
     public BookResponseDto toResponseDto(Book book) {
-        List<ReadingListBookResponseDto> readingListBooks = book.getReadingListBooks().stream()
+        List<ReadingListBookResponseDto> readingListBooks = Optional.ofNullable(book.getReadingListBooks())
+                .orElse(Collections.emptySet())
+                .stream()
                 .map(readingListBookMapper::toResponseDto)
                 .toList();
 
-        List<ReviewResponseDto> reviews = book.getReviews().stream()
+        List<ReviewResponseDto> reviews = Optional.ofNullable(book.getReviews())
+                .orElse(Collections.emptySet())
+                .stream()
                 .map(reviewMapper::toResponseDto)
                 .toList();
 
-        List<BookForSaleResponseDto> booksForSale = book.getBooksForSale().stream()
+        List<BookForSaleResponseDto> booksForSale = Optional.ofNullable(book.getBooksForSale())
+                .orElse(Collections.emptySet())
+                .stream()
                 .map(bookForSaleMapper::toResponseDto)
                 .toList();
 
