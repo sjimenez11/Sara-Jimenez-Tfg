@@ -1,9 +1,32 @@
-.footer{
-  position: relative;
-  bottom: 0;
+.footer {
   padding: 20px 0;
   width: 100%;
   text-align: center;
   background-color: black;
   color: white;
+  position: absolute;
+  bottom: 0;
 }
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+}
+
+.content-wrap {
+  flex: 1;
+  padding-bottom: 60px;
+}
+
+.form-container, .form-container, .form-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+

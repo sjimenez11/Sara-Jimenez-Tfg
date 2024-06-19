@@ -27,20 +27,36 @@ const Login = () => {
     };
 
     return (
-        <div>
-            <h2>Iniciar Sesión</h2>
-            <form onSubmit={handleLogin}>
-                <div>
-                    <label>Email: </label>
-                    <input type='text' value={email} onChange={(e) => setEmail(e.target.value)} required />
-                </div>
-                <div>
-                    <label>Contraseña: </label>
-                    <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} required />
-                </div>
-                {error && <p style={{ color: 'red' }}>{error}</p>}
-                <button type='submit'>Iniciar Sesión</button>
-            </form>
+        <div className="container mt-5 d-flex justify-content-center">
+            <div className="form-container">
+                <h2 className="text-center">Iniciar Sesión</h2>
+                <form onSubmit={handleLogin} className="mt-4">
+                    <div className="form-group">
+                        <label>Email:</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="form-group mt-3">
+                        <label>Contraseña:</label>
+                        <input
+                            type="password"
+                            className="form-control"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    {error && <p className="text-danger mt-3">{error}</p>}
+                    <div className="d-flex justify-content-center mt-3">
+                        <button type="submit" className="btn btn-primary">Iniciar Sesión</button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };
