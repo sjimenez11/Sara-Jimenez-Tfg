@@ -24,6 +24,7 @@ export const ListBooksComponent = () => {
                         <th>Titulo</th>
                         <th>Autor</th>
                         <th>Sinopsis</th>
+                        <th>Actualizar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +35,7 @@ export const ListBooksComponent = () => {
                                     <td>{ book.title }</td>
                                     <td>{ book.author }</td>
                                     <td>{ book.synopsis }</td>
+                                    <td><Link to={ `/edit-book/${book.id}` } className='btn btn-primary mb-2'>Actualizar</Link></td>
                                 </tr>
                         )
                     }

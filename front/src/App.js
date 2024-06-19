@@ -15,6 +15,7 @@ function App() {
           <Route exact path="/" element={<ListBooksComponent/>}></Route>
           <Route path="/books" element={<ListBooksComponent/>}></Route>
           <Route path="/add-book" element={<AddBookComponent/>}></Route>
+          <Route path="/edit-book/:id" element={<AddBookComponent/>}></Route>
         </Routes>
         <FooterComponent/>
       </BrowserRouter>

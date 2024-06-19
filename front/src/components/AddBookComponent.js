@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import BookService from '../services/BookService';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 export const AddBookComponent = () => {
 
@@ -8,6 +8,7 @@ export const AddBookComponent = () => {
   const [author, setAuthor] = useState('');
   const [synopsis, setSynopsis] = useState('');
   const navigate = useNavigate();
+  const {id} = useParams()
 
   const saveBook = (e) => {
     e.preventDefault();
@@ -19,6 +20,16 @@ export const AddBookComponent = () => {
       console.log(error);
     });
   }
+
+  useEffect(() => {
+    BookService.getBookById(id).then((response) => {
+      setTitle(response.data.title);
+      setAuthor(response.data.author);
+      setSynopsis(response.data.synopsis);
+    }).catch(error => {
+    console.log(error);
+    })
+  })
 
   return (
     
