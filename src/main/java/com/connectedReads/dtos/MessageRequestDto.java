@@ -12,5 +12,4 @@ public class MessageRequestDto {
     private final Long senderId;
     private final Long recipientId;
     private final String content;
-    private final LocalDateTime timestamp;
 }

@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -29,7 +31,7 @@ public class MessageService {
         Message message = new Message();
         message.setSender(sender);
         message.setRecipient(recipient);
-        message.setContent(message.getContent());
+        message.setContent(messageRequestDto.getContent());
         message.setTimestamp(LocalDateTime.now());
 
         return messageRepository.save(message);
@@ -44,7 +46,19 @@ public class MessageService {
     }
 
     public List<Message> getConversationBetweenUsers(Long userId1, Long userId2){
-        return messageRepository.findAllBySenderIdAndRecipientIdOrRecipientIdAndSenderIdOrderByTimestamp(userId1, userId2, userId2, userId1);
+        // Busca todas las conversaciones donde userId1 envió mensajes a userId2 o viceversa
+        List<Message> conversation1 = messageRepository.findAllBySenderIdAndRecipientIdOrderByTimestamp(userId1, userId2);
+        List<Message> conversation2 = messageRepository.findAllBySenderIdAndRecipientIdOrderByTimestamp(userId2, userId1);
+
+        // Combina ambas listas de conversaciones
+        List<Message> combinedConversation = new ArrayList<>();
+        combinedConversation.addAll(conversation1);
+        combinedConversation.addAll(conversation2);
+
+        // Ordena la conversación combinada por timestamp
+        combinedConversation.sort(Comparator.comparing(Message::getTimestamp));
+
+        return combinedConversation;
     }
 
     public Message updateMessage(Long id, String content){
