@@ -30,7 +30,7 @@ public class ReadingListBookController {
 
     @PutMapping("/{id}")
     public ResponseEntity<ReadingListBookResponseDto> updateReadingListBookStatus(
-            @PathVariable Long id, ReadingStatus status
+            @PathVariable Long id, @RequestBody ReadingStatus status
             ){
         ReadingListBook readingListBook = readingListBookService.updateReadingListBookStatus(id, status);
         ReadingListBookResponseDto rlbResponseDto = readingListBookMapper.toResponseDto(readingListBook);
